@@ -14,3 +14,13 @@ Accept: application/json
 ###
 GET {{rootURL}}/api/books/2
 Accept: application/json
+
+###
+POST {{rootURL}}/api/books
+Content-Type: application/json
+{
+   "Id":4,
+   "Title": "Mediation",
+   "Author": "Marcus",
+   "YearPublished": 2015
+}

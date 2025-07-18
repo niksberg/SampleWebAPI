@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstAPI.Controllers
 {
@@ -44,13 +45,13 @@ namespace FirstAPI.Controllers
            }
        };
         [HttpGet]
-        public ActionResult<List<Books>> GetBooks()
+        public ActionResult<List<Book>> GetBooks()
         {
             return Ok(books);
         }
 
         [HttpGet("{Id}")]
-        public ActionResult<Books> GetBookById(int Id)
+        public ActionResult<Book> GetBookById(int Id)
         {
             var book = books.FirstOrDefault(x => x.Id == Id);
             if (book == null)
@@ -59,6 +60,17 @@ namespace FirstAPI.Controllers
             }
  
             return Ok(book);
+        }
+
+        [HttpPost]
+        public ActionResult<Book> AddBook(Book newBook)
+        {
+            if (newBook == null)
+            {
+                return BadRequest();
+            }
+            books.Add(newBook);
+            return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
         }
 
     }

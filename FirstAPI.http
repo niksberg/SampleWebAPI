@@ -1,6 +1,16 @@
 @FirstAPI_HostAddress = http://localhost:5000
+@rootURL = http://localhost:5000
+
 // http://localhost:5000/WeatherForecast
+
+
 GET {{FirstAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{rootURL}}/api/books
+Accept: application/json
+
+###
+GET {{rootURL}}/api/books/2
+Accept: application/json

@@ -50,10 +50,10 @@ namespace FirstAPI.Controllers
             return Ok(books);
         }
 
-        [HttpGet("{Id}")]
-        public ActionResult<Book> GetBookById(int Id)
+        [HttpGet("{id}")]
+        public ActionResult<Book> GetBookById(int id)
         {
-            var book = books.FirstOrDefault(x => x.Id == Id);
+            var book = books.FirstOrDefault(x => x.Id == id);
             if (book == null)
             {
                 return NotFound();
@@ -71,6 +71,33 @@ namespace FirstAPI.Controllers
             }
             books.Add(newBook);
             return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
+        }
+
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateBook(int id, Book updatedBook)
+        {
+            var book = books.FirstOrDefault(x => x.Id == id);
+            if (book == null)
+                return NotFound();
+
+            book.Id = updatedBook.Id;
+            book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.YearPublished = updatedBook.YearPublished;
+
+            return NoContent();
+        }
+
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            var book = books.FirstOrDefault(x => x.Id == id);
+            if (book == null)
+                return NotFound();
+
+            books.Remove(book);
+            return NoContent();
         }
 
     }

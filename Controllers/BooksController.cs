@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstAPI.Controllers
 {
@@ -14,25 +15,25 @@ namespace FirstAPI.Controllers
            new Book
            {
             Id = 1,
-            Title = "1984",
-            Author = "George Orwell",
-            YearPublished = 1949
+            Title = "Story of Vittu Bhai",
+            Author = "P Vijeth Shetty",
+            YearPublished = 2023
            },
 
            new Book
            {
             Id = 2,
-            Title = "Titanic",
-            Author = "Richard Mariana",
-            YearPublished = 1999
+            Title = "Mugude Abhi",
+            Author = "Abhishek AB",
+            YearPublished = 2002
            },
 
            new Book
            {
             Id = 3,
-            Title = "Gandu",
-            Author = "Pooki Vasappa",
-            YearPublished = 2022
+            Title = "Love of Pornesh",
+            Author = "Pranesh Ganesh Shetty",
+            YearPublished = 2024
            },
 
            new Book
@@ -43,6 +44,34 @@ namespace FirstAPI.Controllers
             YearPublished = 2015
            }
        };
+        [HttpGet]
+        public ActionResult<List<Book>> GetBooks()
+        {
+            return Ok(books);
+        }
+
+        [HttpGet("{Id}")]
+        public ActionResult<Book> GetBookById(int Id)
+        {
+            var book = books.FirstOrDefault(x => x.Id == Id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+ 
+            return Ok(book);
+        }
+
+        [HttpPost]
+        public ActionResult<Book> AddBook(Book newBook)
+        {
+            if (newBook == null)
+            {
+                return BadRequest();
+            }
+            books.Add(newBook);
+            return CreatedAtAction(nameof(GetBookById), new { id = newBook.Id }, newBook);
+        }
 
     }
 }

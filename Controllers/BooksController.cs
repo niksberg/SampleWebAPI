@@ -10,6 +10,8 @@ namespace FirstAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    // http://localhost:5000/api/books
     public class BooksController : ControllerBase
     {
         // static private List<Book> books = new List<Book>

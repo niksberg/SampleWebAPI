@@ -7,26 +7,39 @@
 GET {{FirstAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
+
+
 ###
 GET {{rootURL}}/api/books
 Accept: application/json
+// To get all books
+
+
 
 ###
 GET {{rootURL}}/api/books/2
 Accept: application/json
+// To get a specific book by ID
+
+
+
 
 ###
 POST {{rootURL}}/api/books
 Content-Type: application/json
+// TO add a new book with Details except Id.
 {
    "Title": "Mediation",
    "Author": "Marcus",
    "YearPublished": 2015
 }
 
+
+
 ###
 PUT {{rootURL}}/api/books/5
 Content-Type: application/json
+// To update a specific book by ID
 {
    "Id":5,
    "Title": "Meditations",
@@ -34,5 +47,29 @@ Content-Type: application/json
    "YearPublished": 2007
 }
 
+
+
+
 ###
-DELETE {{rootURL}}/api/books/4
+DELETE {{rootURL}}/api/books/8
+// To Delete a specific book by ID
+
+
+
+###
+POST {{rootURL}}/api/books
+Content-Type: application/json
+{
+   "Title": "Bhagvat Gita",
+   "Author": "Ved Vyasa",
+   "YearPublished": 400
+}
+
+###
+POST {{rootURL}}/api/books
+Content-Type: application/json
+{
+   "Title": "7 Habits of Highly Affective People",
+   "Author": "Stephen R. Convey",
+   "YearPublished": 1989
+}

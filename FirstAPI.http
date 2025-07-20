@@ -35,16 +35,25 @@ Content-Type: application/json
 }
 
 
+###
+POST {{rootURL}}/api/books
+Content-Type: application/json
+{
+   "Title": "Man's Search for Meaning",
+   "Author": "Viktor Frankl",
+   "YearPublished": 1946 
+}
+
 
 ###
-PUT {{rootURL}}/api/books/5
+PUT {{rootURL}}/api/books/7
 Content-Type: application/json
 // To update a specific book by ID
 {
-   "Id":5,
-   "Title": "Meditations",
-   "Author": "Marcus Aurelius",
-   "YearPublished": 2007
+   "Id":7,
+   "Title": "7 Habits of Highly Effective People",
+   "Author": "Stephen R. Convey",
+   "YearPublished": 1989
 }
 
 
